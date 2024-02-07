@@ -1,6 +1,14 @@
 CREATE DATABASE IF NOT EXISTS EventHub;
 USE EventHub;
 
+-- Roles table with an INT AUTO_INCREMENT primary key and a TEXT field for permissions
+CREATE TABLE IF NOT EXISTS Roles (
+    RoleID INT AUTO_INCREMENT PRIMARY KEY,
+    RoleName VARCHAR(45) NOT NULL, -- Unique role name
+    Permission TEXT, 
+    UNIQUE(RoleName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Users table with added RoleID to link to the Roles table for flexible role assignment
 CREATE TABLE IF NOT EXISTS Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,13 +22,6 @@ CREATE TABLE IF NOT EXISTS Users (
         ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Roles table with an INT AUTO_INCREMENT primary key and a TEXT field for permissions
-CREATE TABLE IF NOT EXISTS Roles (
-    RoleID INT AUTO_INCREMENT PRIMARY KEY,
-    RoleName VARCHAR(45) NOT NULL, -- Unique role name
-    Permission TEXT, 
-    UNIQUE(RoleName)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Events table to store event details with a foreign key linking to the Users table for event ownership
 CREATE TABLE IF NOT EXISTS Events (
