@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS Events (
     EventID INT AUTO_INCREMENT PRIMARY KEY,
     EventTitle VARCHAR(255) NOT NULL,
     EventDesc TEXT,
+    EventCreateDT DATETIME NOT NULL,
     EventStartDT DATETIME NOT NULL, 
     EventEndDT DATETIME NOT NULL, 
     EventOwnerID INT, -- Foreign key to the Users table to identify the event owner
